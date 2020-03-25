@@ -10,20 +10,18 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by Administrator on 2017/8/16.
  */
-@Controller
+@RestController
 @RequestMapping(value = "/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @ResponseBody
     @PostMapping("/add")
-    public int addUser(UserDomain user){
+    public int addUser(@RequestBody UserDomain user){
         return userService.addUser(user);
     }
 
-    @ResponseBody
     @GetMapping("/all")
     public Object findAllUser(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
